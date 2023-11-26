@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+
+  name: nginx
+  labels:
+    apps.kubernetes.io/name: nginx
+    apps.kubernetes.io/app: web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      apps.kubernetes.io/name: nginx
+  template:
+    metadata:
+      labels:
+        apps.kubernetes.io/name: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            cpu: 500m
+          requests:
+            cpu: 200m
+

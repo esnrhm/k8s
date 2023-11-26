@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: myapp-rc
+  labels:
+    apps.kubernetes.io/app: test
+spec:
+  template:
+    metadata:
+      labels:
+        apps.kubernetes.io/app: test
+    spec:
+      containers:
+      - name: myapp
+        image: nginx
+        ports:
+        - containerPort: 80
+  replicas: 3
+  selector:
+    apps.kubernetes.io/app: test

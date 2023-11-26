@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nginx-with-proxy
+  labels:
+    apps.kubernetes.io/name: nginx
+    apps.kubernetes.io/instance: nginx-with-proxy
+spec:
+  selector:
+    matchLabels:
+      apps.kubernetes.io/name: nginx
+      apps.kubernetes.io/instance: nginx-with-proxy
+  template:
+    metadata:
+      labels:
+        apps.kubernetes.io/name: nginx
+        apps.kubernetes.io/instance: nginx-with-proxy
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+  replicas: 3
+       
